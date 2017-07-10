@@ -1,5 +1,5 @@
 {
-  "name": "Brain Games",
+  "name": "igor-i/brain-games",
   "bin": ["bin/brain-games"],
   "type": "library",
   "authors": [
