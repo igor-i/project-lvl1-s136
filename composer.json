@@ -1,0 +1,11 @@
+{
+  "name": "Brain Games",
+  "bin": ["bin/brain-games"],
+  "type": "library",
+  "authors": [
+    {
+      "name": "Igor Inkovskiy",
+      "email": "inkovskiy@gmail.com"
+    }
+  ]
+}
