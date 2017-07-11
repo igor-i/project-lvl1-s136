@@ -8,6 +8,9 @@
       "email": "inkovskiy@gmail.com"
     }
   ],
+  "scripts": {
+    "phpcs": "phpcs"
+  },
   "autoload": {
     "psr-4": {
       "PhpPackage\\": "src/"
@@ -16,5 +19,7 @@
   "require": {
     "wp-cli/php-cli-tools": "dev-master"
   },
-  "require-dev": {}
+  "require-dev": {
+    "squizlabs/php_codesniffer": "*"
+  }
 }
