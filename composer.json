@@ -9,7 +9,7 @@
     }
   ],
   "scripts": {
-    "phpcs": "phpcs"
+    "phpcs": "./vendor/bin/phpcs"
   },
   "autoload": {
     "files": ["src/Cli.php"]
