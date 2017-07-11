@@ -7,5 +7,14 @@
       "name": "Igor Inkovskiy",
       "email": "inkovskiy@gmail.com"
     }
-  ]
+  ],
+  "autoload": {
+    "psr-4": {
+      "PhpPackage\\": "src/"
+    }
+  },
+  "require": {
+    "wp-cli/php-cli-tools": "dev-master"
+  },
+  "require-dev": {}
 }
