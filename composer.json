@@ -12,7 +12,7 @@
     }
   ],
   "scripts": {
-    "phpcs": "./vendor/bin/phpcs"
+    "phpcs": "phpcs"
   },
   "autoload": {
     "files": ["src/Cli.php"]
