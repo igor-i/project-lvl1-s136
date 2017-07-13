@@ -36,7 +36,7 @@ function run($game)
             return;
         }
         line("Question: %s", $question);
-        $answer = prompt('Your answer');
+        $answer = prompt('Your answer', 0);
         $getCorrectAnswer = $namespace . 'getCorrectAnswer';
         $correctAnswer = $getCorrectAnswer($question);
         if ($correctAnswer === false) {
