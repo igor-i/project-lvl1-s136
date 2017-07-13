@@ -7,84 +7,22 @@
 
 namespace BrainGames\games\even;
 
-use function cli\line;
-
-const MULT = 7;
-const INCR = 7;
-const MOD = 10;
-const DESC = 'Answer "yes" if number even otherwise answer "no".';
-
 function getDescription()
 {
-    return DESC;
+    return 'Answer "yes" if number even otherwise answer "no".';
 }
 
-function welcome()
+function getQuestion(Int $step)
 {
-    line('Welcome to the Brain Game!');
-    return;
+    return rand();
 }
 
-function hello()
+function getCorrectAnswer($question)
 {
-    $name = \cli\prompt('May I have your name?');
-    line("Hello, %s!" . PHP_EOL, $name);
-
-    return $name;
+    return (isEven((int)$question)) ? 'yes' : 'no';
 }
 
-function brainEven()
-{
-    welcome();
-    line('Answer "yes" if number even otherwise answer "no".' . PHP_EOL);
-    $name = hello();
-
-    $currRandom = MULT;
-    for ($i = 0; $i < 3; $i++) {
-        line("Question: %s", $currRandom);
-        $answer = \cli\prompt('Your answer');
-        if (isRightAnswer($currRandom, clearAnswer($answer))) {
-            line("Correct!");
-            $currRandom = getNextRandom($currRandom);
-        } else {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, getCorrectAnswer($currRandom));
-            line('Let\'s try again, %s!', $name);
-            return;
-        }
-    }
-
-    line('Congratulations, %s!', $name);
-    return;
-}
-
-function getNextRandom($curr)
-{
-    return ($curr * MULT + INCR) % MOD;
-}
-
-function getCorrectAnswer($num)
-{
-    return (isEven($num)) ? 'yes' : 'no';
-}
-
-function isEven($num)
+function isEven(Int $num)
 {
     return ($num % 2) == 0;
-}
-
-function isRightAnswer($num, $answer)
-{
-    switch ($answer) {
-        case 'yes':
-            return isEven($num);
-        case 'no':
-            return !isEven($num);
-        default:
-            return false;
-    }
-}
-
-function clearAnswer($answer)
-{
-    return strtolower(trim($answer));
 }

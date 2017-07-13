@@ -7,65 +7,45 @@
 
 namespace BrainGames\loader;
 
+use function BrainGames\lib\error;
 use function cli\line;
+use function cli\prompt;
+use function BrainGames\lib\buildNamespace;
+use function BrainGames\lib\buildFilePath;
+use function BrainGames\lib\normalize;
 
 function run($game)
 {
     $namespace = buildNamespace('', 'BrainGames', 'games', $game, '');
     $filePath = buildFilePath('games', $game);
-    requireFile($filePath);
+    require $filePath;
     $getDescription = $namespace . 'getDescription';
     $desc = $getDescription();
-    welcome();
-    line($desc . PHP_EOL);
-    $name = hello();
-}
-
-// TODO переключиться на основную ветку, закоммитить, обновить пакет и проверить как приветствие отработает
-// TODO потом сделать функцию с циклом и из неё вызывать для каждого шага соответствующую функцию текущей игры
-
-function requireFile($filePath)
-{
-    require $filePath;
-}
-
-function buildFilePath(...$segments) {
-    return implode(DIRECTORY_SEPARATOR, $segments) . '.php';
-}
-
-function buildNamespace(...$segments) {
-    return implode('\\', $segments);
-}
-
-function welcome()
-{
     line('Welcome to the Brain Game!');
-    return;
-}
-
-function hello()
-{
+    line($desc . PHP_EOL);
     $name = \cli\prompt('May I have your name?');
     line("Hello, %s!" . PHP_EOL, $name);
 
-    return $name;
-}
-
-function brainEven()
-{
-    welcome();
-    line('Answer "yes" if number even otherwise answer "no".' . PHP_EOL);
-    $name = hello();
-
-    $currRandom = MULT;
-    for ($i = 0; $i < 3; $i++) {
-        line("Question: %s", $currRandom);
-        $answer = \cli\prompt('Your answer');
-        if (isRightAnswer($currRandom, clearAnswer($answer))) {
+    // play game
+    for ($i = 1; $i < 4; $i++) {
+        $getQuestion = $namespace . 'getQuestion';
+        //TODO в getQuestion() передаётся номер текущего шага на тот случай, если для какой-то игры вопрос будет зависеть от номера шага
+        $question = $getQuestion($i);
+        if ($question === false) {
+            error();
+            return;
+        }
+        line("Question: %s", $question);
+        $answer = prompt('Your answer');
+        $getCorrectAnswer = $namespace . 'getCorrectAnswer';
+        $correctAnswer = $getCorrectAnswer($question);
+        if ($correctAnswer === false) {
+            error();
+            return;
+        } elseif ($correctAnswer === normalize($answer)) {
             line("Correct!");
-            $currRandom = getNextRandom($currRandom);
         } else {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, getCorrectAnswer($currRandom));
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
             line('Let\'s try again, %s!', $name);
             return;
         }
@@ -73,36 +53,4 @@ function brainEven()
 
     line('Congratulations, %s!', $name);
     return;
-}
-
-function getNextRandom($curr)
-{
-    return ($curr * MULT + INCR) % MOD;
-}
-
-function getCorrectAnswer($num)
-{
-    return (isEven($num)) ? 'yes' : 'no';
-}
-
-function isEven($num)
-{
-    return ($num % 2) == 0;
-}
-
-function isRightAnswer($num, $answer)
-{
-    switch ($answer) {
-        case 'yes':
-            return isEven($num);
-        case 'no':
-            return !isEven($num);
-        default:
-            return false;
-    }
-}
-
-function clearAnswer($answer)
-{
-    return strtolower(trim($answer));
 }
