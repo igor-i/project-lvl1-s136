@@ -1,8 +1,8 @@
 {
   "name": "igor-i/brain-games",
   "bin": [
-    "bin/brain-games",
-    "bin/brain-even"
+    "bin/brain-even",
+    "bin/brain-calc"
   ],
   "type": "project",
   "authors": [
@@ -15,7 +15,10 @@
     "phpcs": "phpcs"
   },
   "autoload": {
-    "files": ["src/Cli.php"]
+    "files": [
+      "src/loader.php",
+      "src/lib.php"
+    ]
   },
   "require": {
     "wp-cli/php-cli-tools": "*"
