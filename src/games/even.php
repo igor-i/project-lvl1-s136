@@ -14,7 +14,7 @@ function getDescription()
 
 function getQuestion(Int $step)
 {
-    return rand();
+    return rand(1, 20);
 }
 
 function getCorrectAnswer($question)

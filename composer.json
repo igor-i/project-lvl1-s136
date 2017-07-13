@@ -1,7 +1,6 @@
 {
   "name": "igor-i/brain-games",
   "bin": [
-    "bin/brain-games",
     "bin/brain-even",
     "bin/brain-calc"
   ],
