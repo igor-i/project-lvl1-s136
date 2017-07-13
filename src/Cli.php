@@ -37,11 +37,12 @@ function brainEven()
     for ($i = 0; $i < 3; $i++) {
         line("Question: %s", $currRandom);
         $answer = \cli\prompt('Your answer');
-        if (isRightAnswer($currRandom, clearAnswer($answer))) {
+        $correctAnswer = getCorrectAnswer($currRandom);
+        if ($correctAnswer === normalize($answer)) {
             line("Correct!");
             $currRandom = getNextRandom($currRandom);
         } else {
-            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, getCorrectAnswer($currRandom));
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
             line('Let\'s try again, %s!', $name);
             return;
         }
@@ -66,19 +67,7 @@ function isEven($num)
     return ($num % 2) == 0;
 }
 
-function isRightAnswer($num, $answer)
+function normalize($answer)
 {
-    switch ($answer) {
-        case 'yes':
-            return isEven($num);
-        case 'no':
-            return !isEven($num);
-        default:
-            return false;
-    }
-}
-
-function clearAnswer($answer)
-{
-    return strtolower(trim($answer));
+    return mb_strtolower(trim($answer));
 }
