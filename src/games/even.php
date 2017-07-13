@@ -7,19 +7,24 @@
 
 namespace BrainGames\games\even;
 
-function getDescription()
-{
-    return 'Answer "yes" if number even otherwise answer "no".';
-}
+use function BrainGames\gameplay\gamePlay;
 
-function getQuestion(Int $step)
+function run()
 {
-    return rand(1, 20);
-}
+    $description = function() {
+        return 'Answer "yes" if number even otherwise answer "no".';
+    };
 
-function getCorrectAnswer($question)
-{
-    return (isEven((int)$question)) ? 'yes' : 'no';
+    $question = function() {
+        return rand(1, 20);
+    };
+
+    $correctAnswer = function($question) {
+        return (isEven((int)$question)) ? 'yes' : 'no';
+    };
+
+    gamePlay($description, $question, $correctAnswer);
+    return;
 }
 
 function isEven(Int $num)

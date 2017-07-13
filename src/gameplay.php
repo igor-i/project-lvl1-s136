@@ -5,7 +5,7 @@
  * Time: 1:28
  */
 
-namespace BrainGames\loader;
+namespace BrainGames\gameplay;
 
 use function cli\line;
 use function cli\prompt;
@@ -14,16 +14,46 @@ use function BrainGames\lib\buildFilePath;
 use function BrainGames\lib\normalize;
 use function BrainGames\lib\error;
 
+
+function gamePlay($description, $question, $correctAnswer)
+{
+    line('Welcome to the Brain Game!');
+    line($description . PHP_EOL);
+    $name = prompt('May I have your name?');
+    line("Hello, %s!" . PHP_EOL, $name);
+
+    // play game
+    for ($i = 0; $i < 3; $i++) {
+        line("Question: %s", $question);
+        $answer = prompt('Your answer', 0);
+        $corAnswer = $correctAnswer($question);
+        if ($corAnswer === false) {
+            error();
+            return;
+        } elseif ($corAnswer == normalize($answer)) {
+            line("Correct!");
+        } else {
+            line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $corAnswer);
+            line('Let\'s try again, %s!', $name);
+            return;
+        }
+    }
+
+    line('Congratulations, %s!', $name);
+    return;
+}
+
 function run($game)
 {
     $namespace = buildNamespace('', 'BrainGames', 'games', $game, '');
     $filePath = buildFilePath('games', $game);
     require $filePath;
+
     $getDescription = $namespace . 'getDescription';
     $desc = $getDescription();
     line('Welcome to the Brain Game!');
     line($desc . PHP_EOL);
-    $name = \cli\prompt('May I have your name?');
+    $name = prompt('May I have your name?');
     line("Hello, %s!" . PHP_EOL, $name);
 
     // play game
