@@ -9,11 +9,13 @@ namespace BrainGames\lib;
 
 use function cli\line;
 
-function buildFilePath(...$segments) {
+function buildFilePath(...$segments)
+{
     return implode(DIRECTORY_SEPARATOR, $segments) . '.php';
 }
 
-function buildNamespace(...$segments) {
+function buildNamespace(...$segments)
+{
     return implode('\\', $segments);
 }
 

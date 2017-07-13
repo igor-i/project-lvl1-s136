@@ -16,7 +16,10 @@
     "phpcs": "phpcs"
   },
   "autoload": {
-    "files": ["src/loader.php"]
+    "files": [
+      "src/loader.php",
+      "src/lib.php"
+    ]
   },
   "require": {
     "wp-cli/php-cli-tools": "*"

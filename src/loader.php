@@ -7,12 +7,12 @@
 
 namespace BrainGames\loader;
 
-use function BrainGames\lib\error;
 use function cli\line;
 use function cli\prompt;
 use function BrainGames\lib\buildNamespace;
 use function BrainGames\lib\buildFilePath;
 use function BrainGames\lib\normalize;
+use function BrainGames\lib\error;
 
 function run($game)
 {
