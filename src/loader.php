@@ -42,7 +42,7 @@ function run($game)
         if ($correctAnswer === false) {
             error();
             return;
-        } elseif ($correctAnswer === normalize($answer)) {
+        } elseif ($correctAnswer == normalize($answer)) {
             line("Correct!");
         } else {
             line("'%s' is wrong answer ;(. Correct answer was '%s'.", $answer, $correctAnswer);
