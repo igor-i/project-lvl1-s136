@@ -7,8 +7,6 @@
 
 namespace BrainGames\games\calc;
 
-use function BrainGames\lib\normalize;
-
 function getDescription()
 {
     return 'What is the result of the expression?';
@@ -31,8 +29,8 @@ function getQuestion(Int $step)
 
 function getCorrectAnswer($question)
 {
-    list($num1, $operation, $num2) = $question;
-    return calc((int)normalize($num1), (int)normalize($num2), normalize($operation));
+    list($num1, $operation, $num2) = explode(' ', $question);
+    return calc((int)$num1, (int)$num2, $operation);
 }
 
 function calc(Int $num1, Int $num2, $operation)
