@@ -5,13 +5,37 @@
  * Time: 1:28
  */
 
-namespace BrainGames\Cli;
+namespace BrainGames\loader;
 
 use function cli\line;
 
-const MULT = 7;
-const INCR = 7;
-const MOD = 10;
+function run($game)
+{
+    $namespace = buildNamespace('', 'BrainGames', 'games', $game, '');
+    $filePath = buildFilePath('games', $game);
+    requireFile($filePath);
+    $getDescription = $namespace . 'getDescription';
+    $desc = $getDescription();
+    welcome();
+    line($desc . PHP_EOL);
+    $name = hello();
+}
+
+// TODO переключиться на основную ветку, закоммитить, обновить пакет и проверить как приветствие отработает
+// TODO потом сделать функцию с циклом и из неё вызывать для каждого шага соответствующую функцию текущей игры
+
+function requireFile($filePath)
+{
+    require $filePath;
+}
+
+function buildFilePath(...$segments) {
+    return implode(DIRECTORY_SEPARATOR, $segments) . '.php';
+}
+
+function buildNamespace(...$segments) {
+    return implode('\\', $segments);
+}
 
 function welcome()
 {
