@@ -13,6 +13,7 @@ function balance(Int $num)
 {
     $strNum = (string)$num;
     $arrayNum = str_split($strNum);
+    sort($arrayNum, SORT_NUMERIC);
 
     $balanceIter = function ($acc) use (&$balanceIter) {
         $max = (int)array_pop($acc);
@@ -20,15 +21,17 @@ function balance(Int $num)
         if (($max - 1) == $min) {
             $acc[] = $max;
             $acc[] = $min;
-            return sort($acc, SORT_NUMERIC);
+            sort($acc, SORT_NUMERIC);
+            return $acc;
         } else {
             $acc[] = $max - 1;
             $acc[] = $min + 1;
-            return $balanceIter(sort($acc, SORT_NUMERIC));
+            sort($acc, SORT_NUMERIC);
+            return $balanceIter($acc);
         }
     };
 
-    return $balanceIter(sort($arrayNum, SORT_NUMERIC));
+    return $balanceIter($arrayNum);
 }
 
 function run()
@@ -36,8 +39,7 @@ function run()
     $description = 'Balance the given number.';
 
     $question = function () {
-        $num = rand(1, 999);
-        return $num;
+        return rand(1, 999);
     };
 
     $correctAnswer = function ($question) {
