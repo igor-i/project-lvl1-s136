@@ -46,10 +46,5 @@ function run()
         return calc((int)$num1, (int)$num2, $operation);
     };
 
-//    $run = function ($description, $question) use ($correctAnswer) {
-//        gamePlay($description, $question, $correctAnswer);
-//    };
-
     gamePlay(DESC, $question, $correctAnswer);
-//    $run($description, $question);
 }

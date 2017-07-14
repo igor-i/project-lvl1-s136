@@ -9,6 +9,8 @@ namespace BrainGames\games\balance;
 
 use function BrainGames\gameplay\gamePlay;
 
+const DESC = 'Balance the given number.';
+
 function balance(Int $num)
 {
     $strNum = (string)$num;
@@ -39,8 +41,6 @@ function balance(Int $num)
 
 function run()
 {
-    $description = 'Balance the given number.';
-
     $question = function () {
         return rand(11, 999);
     };
@@ -49,9 +49,5 @@ function run()
         return implode(balance((int)$question));
     };
 
-    $run = function ($description, $question) use ($correctAnswer) {
-        gamePlay($description, $question, $correctAnswer);
-    };
-
-    echo $run($description, $question);
+    gamePlay(DESC, $question, $correctAnswer);
 }

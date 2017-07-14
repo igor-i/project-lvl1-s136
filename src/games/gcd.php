@@ -9,6 +9,8 @@ namespace BrainGames\games\gcd;
 
 use function BrainGames\gameplay\gamePlay;
 
+const DESC = 'Find the greatest common divisor of given numbers.';
+
 function gcd(Int $num1, Int $num2)
 {
     if ($num1 < $num2) {
@@ -31,8 +33,6 @@ function gcd(Int $num1, Int $num2)
 
 function run()
 {
-    $description = 'Find the greatest common divisor of given numbers.';
-
     $question = function () {
         $num1 = rand(1, 20);
         $num2 = rand(1, 20);
@@ -45,9 +45,5 @@ function run()
         return gcd((int)$num1, (int)$num2);
     };
 
-    $run = function ($description, $question) use ($correctAnswer) {
-        gamePlay($description, $question, $correctAnswer);
-    };
-
-    echo $run($description, $question);
+    gamePlay(DESC, $question, $correctAnswer);
 }
