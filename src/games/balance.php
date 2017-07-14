@@ -16,9 +16,8 @@ function balance(Int $num)
     sort($arrayNum, SORT_NUMERIC);
 
     $balanceIter = function ($acc) use (&$balanceIter) {
-        if (!is_array($acc)) {
-            echo 'упс' . PHP_EOL;
-            return false;
+        if ((empty($acc)) || (count($acc) < 2)) {
+            return $acc;
         }
         $max = array_pop($acc);
         $min = array_shift($acc);
@@ -43,7 +42,7 @@ function run()
     $description = 'Balance the given number.';
 
     $question = function () {
-        return rand(1, 3);
+        return rand(11, 999);
     };
 
     $correctAnswer = function ($question) {
