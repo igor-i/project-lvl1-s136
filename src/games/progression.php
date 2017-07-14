@@ -34,11 +34,11 @@ function findMissingNum(array $sequence)
 function run()
 {
     $question = function () {
-        $first = rand(1, 9);
+        $first = rand(0, 9);
         $step = rand(1, 9);
         $last = $first + $step * 10;
         $sequence = range($first, $last, $step);
-        $skip = rand($first, $last);
+        $skip = rand(0, 9);
         $sequence[$skip] = '..';
 
         return implode(' ', $sequence);
