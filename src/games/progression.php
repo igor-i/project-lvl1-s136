@@ -36,7 +36,7 @@ function run()
     $question = function () {
         $first = rand(1, 9);
         $step = rand(1, 9);
-        $last = $first * $step * 10;
+        $last = $first + $step * 10;
         $sequence = range($first, $last, $step);
         $skip = rand($first, $last);
         $sequence[$skip] = '..';
