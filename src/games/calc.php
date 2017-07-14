@@ -9,6 +9,8 @@ namespace BrainGames\games\calc;
 
 use function BrainGames\gameplay\gamePlay;
 
+const DESC = 'What is the result of the expression?';
+
 function calc(Int $num1, Int $num2, $operation)
 {
     switch ($operation) {
@@ -25,8 +27,6 @@ function calc(Int $num1, Int $num2, $operation)
 
 function run()
 {
-    $description = 'What is the result of the expression?';
-
     $question = function () {
         $num1 = rand(0, 20);
         $num2 = rand(0, 20);
@@ -46,9 +46,10 @@ function run()
         return calc((int)$num1, (int)$num2, $operation);
     };
 
-    $run = function ($description, $question) use ($correctAnswer) {
-        gamePlay($description, $question, $correctAnswer);
-    };
+//    $run = function ($description, $question) use ($correctAnswer) {
+//        gamePlay($description, $question, $correctAnswer);
+//    };
 
-    echo $run($description, $question);
+    gamePlay(DESC, $question, $correctAnswer);
+//    $run($description, $question);
 }
