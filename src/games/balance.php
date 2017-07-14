@@ -16,6 +16,10 @@ function balance(Int $num)
     sort($arrayNum, SORT_NUMERIC);
 
     $balanceIter = function ($acc) use (&$balanceIter) {
+        if (!is_array($acc)) {
+            echo 'упс' . PHP_EOL;
+            return false;
+        }
         $max = array_pop($acc);
         $min = array_shift($acc);
         if (((int)$max - 1) == (int)$min) {
