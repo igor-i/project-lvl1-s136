@@ -27,7 +27,7 @@ function run()
 {
     $description = 'What is the result of the expression?';
 
-    $question = function() {
+    $question = function () {
         $num1 = rand(0, 20);
         $num2 = rand(0, 20);
 
@@ -41,7 +41,7 @@ function run()
         }
     };
 
-    $correctAnswer = function($question) {
+    $correctAnswer = function ($question) {
         list($num1, $operation, $num2) = explode(' ', $question);
         return calc((int)$num1, (int)$num2, $operation);
     };
