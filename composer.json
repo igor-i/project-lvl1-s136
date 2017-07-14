@@ -17,7 +17,9 @@
   "autoload": {
     "files": [
       "src/gameplay.php",
-      "src/games/even.php"
+      "src/lib.php",
+      "src/games/even.php",
+      "src/games/calc.php"
     ]
   },
   "require": {
