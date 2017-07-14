@@ -18,11 +18,11 @@ function run()
 {
     $description = 'Answer "yes" if number even otherwise answer "no".';
 
-    $question = function() {
+    $question = function () {
         return rand(1, 20);
     };
 
-    $correctAnswer = function($question) {
+    $correctAnswer = function ($question) {
         return (isEven((int)$question)) ? 'yes' : 'no';
     };
 
