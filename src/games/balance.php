@@ -12,7 +12,7 @@ use function BrainGames\gameplay\gamePlay;
 function balance(Int $num)
 {
     $strNum = (string)$num;
-    $arrayNum = explode('', $strNum);
+    $arrayNum = str_split($strNum);
 
     $balanceIter = function ($acc) use (&$balanceIter) {
         $max = (int)array_pop($acc);
