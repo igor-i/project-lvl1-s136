@@ -34,8 +34,8 @@ function run()
     $description = 'Find the greatest common divisor of given numbers.';
 
     $question = function () {
-        $num1 = rand(0, 20);
-        $num2 = rand(0, 20);
+        $num1 = rand(1, 20);
+        $num2 = rand(1, 20);
 
         return $num1 . ' ' . $num2;
     };
